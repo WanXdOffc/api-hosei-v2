@@ -1,0 +1,63 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "LuminAI API",
+      "version": "1.0.0",
+      "description": "API untuk LuminAI"
+    },
+    "paths": {
+      "/api/luminai": {
+        "get": {
+          "summary": "Mendapatkan respons dari LuminAI",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "message",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "Pesan untuk dikirim ke LuminAI"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Respons sukses",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "number"
+                      },
+                      "creator": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "response": {
+                            "type": "object"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Parameter tidak valid"
+            },
+            "429": {
+              "description": "Terlalu banyak permintaan"
+            },
+            "500": {
+              "description": "Kesalahan server"
+            }
+          }
+        }
+      }
+    }
+  }
